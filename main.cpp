@@ -21,6 +21,10 @@ int main()
    
    c.print();
 
+   c = a.multi(b);
+
+	c.print();
+
    return 0;   
 }
 

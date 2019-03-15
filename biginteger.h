@@ -13,17 +13,22 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include<algorithm>
 
 class BigInteger
 {
 public:
    BigInteger();
-   BigInteger(std::string _number);
-   Biginteger(std::vector<int> _number);
+   BigInteger(std::string num_string);
+   BigInteger(std::vector<int> _number);
    
    BigInteger add(BigInteger num);
+	BigInteger multi(BigInteger num);
    
-
+   std::string to_string() const;
+   std::vector<int> get_vec() const;
+	int get_digit(int i) const;
+	int get_size() const;
    void print();
 
 private:
