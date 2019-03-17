@@ -58,24 +58,25 @@ int BigInteger::get_size() const
 
 BigInteger BigInteger::add(BigInteger num)
 {
-   std::vector<int> number = num.get_vec();
+   BigInteger* number1 = this;
+   BigInteger* number2 = &num;
 
-   if(m_number.size() < num.get_size())
-      swap(m_number, number);
+   if(number1->get_size() < number2->get_size())
+      std::swap(number1, number2);
 
    int carry = 0;
    std::string num_string = "";
 
-   for(int i = 0; i < number.size(); i++)
+   for(int i = 0; i < number2->get_size(); i++)
    {
-      int sum = m_number[i] + number[i] + carry;
+      int sum = number1->get_digit(i) + number2->get_digit(i) + carry;
       num_string = num_string + std::to_string(sum %10);
       carry = sum/10;
    }
    
-   for(int i = number.size(); i < m_number.size(); i++)
+   for(int i = number2->get_size(); i < number1->get_size(); i++)
    {
-      int sum = m_number[i] + carry;
+      int sum = number1->get_digit(i) + carry;
       num_string = num_string + std::to_string(sum%10);
       carry = sum/10;
    }
@@ -84,40 +85,43 @@ BigInteger BigInteger::add(BigInteger num)
 
    reverse(num_string.begin(), num_string.end());
        
-      
+
    return BigInteger(num_string);
 }
 
 
 BigInteger BigInteger::multi(BigInteger num)
 {
-	std::vector<int> number = num.get_vec();
+	BigInteger* num2 = &num;
+	BigInteger* num1 = this;
 
-	BigInteger total;
+	if(num1->get_size() < num2->get_size())
+		std::swap(num1, num2);
 
-	if(m_number.size() < number.size())
-		swap(m_number, number);
-
-	int carry = 0;
-
-	for(int i1 = 0; i1 < number.size(); i1++ )
+   BigInteger total;
+	int count = 0;
+	for(int i1 = 0; i1 < num1->get_size(); i1++)
 	{
-		std::string num_string = "";
-		for(int i2 = 0; i2 < m_number.size(); i2++ )
+		int carry = 0;
+	   std::string num_string = "";
+		if(count > 0)
 		{
-			int sum = m_number[i2] * number[i1] + carry;
-			num_string = num_string + std::to_string(sum%10);
-			carry = sum/10;
+			for(int c = 0; c < count; c++)
+				num_string = num_string + "0";
+		}
+	   for(int i2 = 0; i2 < num2->get_size(); i2++)
+		{
+			int product =  num1->get_digit(i1) * num2->get_digit(i2) + carry;
+			num_string = num_string + std::to_string(product%10);
+			carry = product/10;
 		}
 		if(carry > 0)
-			num_string = num_string + std::to_string(carry);
-	   int carry = 0;
+		   num_string = num_string + std::to_string(carry);
 
-		reverse(num_string.begin(), num_string.end());
-		total = total.add(BigInteger(num_string));
-//		total = total + BigInteger(num_string);
+			reverse(num_string.begin(), num_string.end());
+			total = total.add(BigInteger(num_string));
+			count ++;
 	}
-   
 	return total;
 }
 
