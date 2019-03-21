@@ -13,16 +13,13 @@ int main()
 {
    BigInteger a = BigInteger("123456789");
    BigInteger b = BigInteger("987654321");
-
    a.print();
    b.print();
 
-   BigInteger c = a.add(b);
-   
+   BigInteger c = a.sub(b);
    c.print();
 
    c = a.multi(b);
-
 	c.print();
 
    return 0;   

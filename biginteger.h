@@ -20,19 +20,26 @@ class BigInteger
 public:
    BigInteger();
    BigInteger(std::string num_string);
-   BigInteger(std::vector<int> _number);
+
+	void change_sign();
+	
+
+	BigInteger addition(BigInteger num);
+	BigInteger subtraction(BigInteger num);
    
+	BigInteger sub(BigInteger num);
    BigInteger add(BigInteger num);
 	BigInteger multi(BigInteger num);
    
    std::string to_string() const;
-   std::vector<int> get_vec() const;
 	int get_digit(int i) const;
 	int get_size() const;
-   void print();
+	bool get_sign() const;
 
+	void print();
 private:
    std::vector<int> m_number;
+	bool is_pos;
 };
 
 
