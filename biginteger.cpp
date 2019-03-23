@@ -95,28 +95,7 @@ bool BigInteger::get_sign() const
 {
 	return is_pos;
 }
-#if 0
-BigInteger BigInteger::addition(BigInteger num)
-{
-	//check for negative numbers
-	if( (this->get_sign() == false || num.get_sign == false) && !(this->get_sign() == num.get_sign()) )
-	{
-		if(!(this->get_sign()))
-			return this->sub(num);
-	}
-	else
-		return this->add(num);
 
-}
-
-BigInteger BigInteger::subtraction(BigInteger num)
-{
-	if(this->get_sign() == false && num.get_sign() == false)
-		return this->add(num);
-	else
-		return this->sub(num);
-}
-#endif
 /*
 Adds 2 BigIntegers together
 @peram num the BigInteger to be added
@@ -157,7 +136,7 @@ BigInteger BigInteger::add(BigInteger num)
 
    return BigInteger(num_string);
 }
-
+ 
 /*
 subtracts 2 BigIntegers
 @peram num
@@ -165,13 +144,14 @@ subtracts 2 BigIntegers
 */
 BigInteger BigInteger::sub(BigInteger num)
 {
+
 	BigInteger* number1 = this;
 	BigInteger* number2 = &num;
    std::string num_string = "";
 
 
-	if(number1->get_size() < number2->get_size())
-		std::swap(number1, number2);
+	//if(number1->get_size() < number2->get_size())
+	//	std::swap(number1, number2);
 
 	int carry = 0;
 	int size_dif = number1->get_size() - number2->get_size();
@@ -251,6 +231,7 @@ BigInteger BigInteger::multi(BigInteger num)
 		   num_string = num_string + std::to_string(carry);
 
 			reverse(num_string.begin(), num_string.end());
+			std::cout << num_string << std::endl;
 			total = total.add(BigInteger(num_string));
 			count ++;
 	}

@@ -22,10 +22,6 @@ public:
    BigInteger(std::string num_string);
 
 	void change_sign();
-	
-
-	BigInteger addition(BigInteger num);
-	BigInteger subtraction(BigInteger num);
    
 	BigInteger sub(BigInteger num);
    BigInteger add(BigInteger num);
@@ -41,7 +37,6 @@ private:
    std::vector<int> m_number;
 	bool is_pos;
 };
-
 
 
 #endif

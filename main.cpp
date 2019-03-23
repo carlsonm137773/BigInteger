@@ -11,15 +11,16 @@
 
 int main()
 {
-   BigInteger a = BigInteger("123456789");
-   BigInteger b = BigInteger("987654321");
+   BigInteger a = BigInteger("222");
+   BigInteger b = BigInteger("33");
    a.print();
    b.print();
 
    BigInteger c = a.sub(b);
-   c.print();
-
+//   c.print();
+	std::cout << "multi: " << std::endl;
    c = a.multi(b);
+	std::cout << "= ";
 	c.print();
 
    return 0;   
