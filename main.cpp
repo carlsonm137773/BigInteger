@@ -8,21 +8,19 @@
 */
 
 #include"biginteger.h"
+#include<iostream>
 
 int main()
 {
-   BigInteger a = BigInteger("222");
-   BigInteger b = BigInteger("33");
-   a.print();
-   b.print();
+	BigInteger a = BigInteger("99283");
+	BigInteger b = BigInteger("2348");
+	BigInteger c = a + b;
+	std::cout << "a = " << a << std::endl
+				 << "b = " << b << std::endl
+				 << a << " + " << b << " = " << a + b << std::endl
+				 << a << " - " << b << " = " << a - b << std::endl
+				 << a << " * " << b << " = " << a * b << std::endl;
 
-   BigInteger c = a.sub(b);
-//   c.print();
-	std::cout << "multi: " << std::endl;
-   c = a.multi(b);
-	std::cout << "= ";
-	c.print();
-
-   return 0;   
+  	return 0;   
 }
 
